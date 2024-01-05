@@ -1,0 +1,34 @@
+name: Addition
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 'latest'
+
+      - name: Perform Addition
+        run: |
+          num1=$1
+          num2=$2
+          sum=$((num1 + num2))
+          echo "Input: num1 = $num1, num2 = $num2"
+          echo "Output: $sum"
+        shell: bash
+        env:
+          num1: ${{ secrets.NUM1 }}
+          num2: ${{ secrets.NUM2 }}
+
+
+
+
+
+
